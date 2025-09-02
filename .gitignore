@@ -1,0 +1,38 @@
+# ─── Application (Bedrock) ──────────────────────────────────────────────
+web/app/plugins/*
+!web/app/plugins/.gitkeep
+web/app/mu-plugins/*/
+web/app/themes/twentytwentyfive/
+web/app/upgrade
+web/app/uploads/*
+!web/app/uploads/.gitkeep
+web/app/cache/*
+
+# WordPress Core
+web/wp
+web/.htaccess
+
+# ─── Logs ───────────────────────────────────────────────────────────────
+*.log
+
+# ─── Environment ────────────────────────────────────────────────────────
+.env
+.env.*
+auth.json
+wp-cli.local.yml
+
+# ─── Composer ───────────────────────────────────────────────────────────
+/vendor
+
+# ─── Lando & Docker ─────────────────────────────────────────────────────
+.lando/
+.lando.local.yml
+/logs/
+/tmp/
+/data/
+
+# ─── IDE & OS junk ──────────────────────────────────────────────────────
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

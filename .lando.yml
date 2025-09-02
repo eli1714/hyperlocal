@@ -1,0 +1,15 @@
+name: hyperlocal
+recipe: wordpress
+config:
+  php: '8.4'
+  via: apache
+  webroot: web
+  database: mariadb:10.6
+services:
+  cache:
+    type: redis:7
+tooling:
+  wp:
+    service: appserver
+  composer:
+    service: appserver
