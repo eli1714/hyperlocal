@@ -60,3 +60,38 @@ function hyperlocal_register_server_rendered_blocks(): void
 }
 add_action('init', 'hyperlocal_register_server_rendered_blocks');
 
+// Preload the featured image when the LCP Hero block is present on singular content.
+function hyperlocal_preload_lcp_hero_featured_image(): void
+{
+    if (!is_singular()) {
+        return;
+    }
+
+    $post = get_queried_object();
+    if (!($post instanceof WP_Post)) {
+        return;
+    }
+
+    // Only preload when the block is used in post content.
+    if (!has_block('hyperlocal/lcp-hero', $post)) {
+        return;
+    }
+
+    $attachment_id = get_post_thumbnail_id($post);
+    if (!$attachment_id) {
+        return;
+    }
+
+    $src    = wp_get_attachment_image_url($attachment_id, 'lcp-hero');
+    if (!$src) {
+        return;
+    }
+
+    $srcset = wp_get_attachment_image_srcset($attachment_id, 'lcp-hero');
+    $sizes  = '100vw';
+
+    echo '<link rel="preload" as="image" href="' . esc_url($src) . '"' .
+         ($srcset ? ' imagesrcset="' . esc_attr($srcset) . '"' : '') .
+         ' imagesizes="' . esc_attr($sizes) . '" />' . "\n"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+add_action('wp_head', 'hyperlocal_preload_lcp_hero_featured_image', 1);
