@@ -1,0 +1,24 @@
+{
+  "apiVersion": 3,
+  "name": "hyperlocal/lcp-hero",
+  "title": "LCP Hero (Featured Image)",
+  "category": "theme",
+  "description": "Displays the Featured Image as a hero with title.",
+  "textdomain": "hyperlocal",
+  "supports": {
+    "align": ["full", "wide"],
+    "html": false
+  },
+  "attributes": {
+    "kicker": {
+      "type": "string",
+      "default": ""
+    },
+    "showExcerpt": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "style": "file:./style.css"
+}
+
